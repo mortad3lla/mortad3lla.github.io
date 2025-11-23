@@ -1,5 +1,4 @@
 -- EXERCISES OF THE BOOK THEOREM PROVING IN LEAN 4 --
-
 section CHAPTER3
 
 
@@ -56,9 +55,62 @@ example : (p ∨ q) ∨ r ↔ p ∨ (q ∨ r) :=
           (fun (hr : r) => Or.intro_right (p ∨ q) hr) ))
 
 
+#check Iff.intro
+#check Or.elim
+#check Or.intro_left
+#check And.intro
+
 -- distributivity
-example : p ∧ (q ∨ r) ↔ (p ∧ q) ∨ (p ∧ r) := sorry
-example : p ∨ (q ∧ r) ↔ (p ∨ q) ∧ (p ∨ r) := sorry
+example : p ∧ (q ∨ r) ↔ (p ∧ q) ∨ (p ∧ r) :=
+  Iff.intro
+    (fun (h : p ∧ (q ∨ r)) =>
+      Or.elim
+      (h.right)
+      (fun (hq : q) =>
+        Or.intro_left
+        (p ∧ r)
+        ⟨h.left, hq⟩)
+      (fun (hr : r) =>
+        Or.intro_right
+        (p ∧ q)
+        ⟨h.left, hr⟩ )
+      )
+    (fun (h : (p ∧ q) ∨ (p ∧ r)) =>
+      Or.elim
+      h
+      (fun (hpq : p ∧ q) =>
+        ⟨hpq.left, (Or.intro_left r hpq.right)⟩)
+      (fun (hpr : p ∧ r) =>
+        ⟨hpr.left, (Or.intro_right q hpr.right)⟩)
+      )
+
+example : p ∨ (q ∧ r) ↔ (p ∨ q) ∧ (p ∨ r) :=
+  Iff.intro
+  (fun (h : p ∨ (q ∧ r)) =>
+    Or.elim
+    h
+    (fun (hp : p) =>
+      And.intro
+      (Or.intro_left q hp)
+      (Or.intro_left r hp))
+    (fun (hqr : q ∧ r) =>
+      And.intro
+      (Or.intro_right p hqr.left)
+      (Or.intro_right p hqr.right))
+    )
+  (fun (h : (p ∨ q) ∧ (p ∨ r)) =>
+    Or.elim
+    h.left
+    (fun (hp : p) =>
+      Or.intro_left (q ∧ r) hp)
+    (fun (hq : q) =>
+      Or.elim
+      h.right
+      (fun (hp : p) =>
+        Or.intro_left (q ∧ r) hp)
+      (fun (hr : r) =>
+        Or.intro_right p ⟨hq, hr⟩))
+    )
 
 
 -- other properties
