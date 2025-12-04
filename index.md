@@ -19,7 +19,7 @@ I love riding my bike!
 ---
 
 
-<a href="video.html" class="button">Pagina</a>
+<a href="pagina.html" class="button">Pagina</a>
 
 
 <style>
