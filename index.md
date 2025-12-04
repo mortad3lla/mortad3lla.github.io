@@ -19,9 +19,8 @@ I love riding my bike!
 ---
 
 
-<a href="video.html" class="button">Video</a>
-<a href="pubblicazioni.html" class="button">Pubblicazioni</a>
-<a href="progetti.html" class="button">Progetti</a>
+<a href="video.html" class="button">Pagina</a>
+
 
 <style>
 .button {
