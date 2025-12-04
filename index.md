@@ -19,6 +19,27 @@ I love riding my bike!
 ---
 
 
+<a href="video.html" class="button">Video</a>
+<a href="pubblicazioni.html" class="button">Pubblicazioni</a>
+<a href="progetti.html" class="button">Progetti</a>
+
+<style>
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #007bff;
+    color: white !important;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+}
+.button:hover {
+    background-color: #0056b3;
+}
+</style>
+
+
 
 ## Contacts
 [Mi trovi su GitHub!](https://github.com/mortad3lla/mortad3lla.github.io)
